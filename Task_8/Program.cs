@@ -6,9 +6,25 @@ namespace Task_8
     {
         static void Main(string[] args)
         {
-            MyComplex A = new MyComplex("A", 2, 5);
+            Console.InputEncoding = System.Text.Encoding.Unicode;
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
+
+            double a, b;
+            
+            Console.Write("Введіть дійсне число " + "\n" + "Реальна частина - ");
+            a = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Уявна частина - ");
+            b = Convert.ToDouble(Console.ReadLine());
+
+            MyComplex A = new MyComplex("A", a, b);
             A.OutputComNumb();
-            MyComplex B = new MyComplex("B", 7, 8);
+
+            Console.Write("Введіть дійсне число " + "\n" + "Реальна частина - ");
+            a = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Уявна частина - ");
+            b = Convert.ToDouble(Console.ReadLine());
+
+            MyComplex B = new MyComplex("B", a, b);
             B.OutputComNumb();
 
             MyComplex C = new MyComplex("C");
@@ -25,8 +41,6 @@ namespace Task_8
             E = 13 * D;
             Console.WriteLine("E = 13 * D");
             E.OutputComNumb();
-
-
         }
     }
 
@@ -73,7 +87,5 @@ namespace Task_8
         {
             return new MyComplex { re = a.re * b, im = a.im * b, name = "Result" };
         }
-        
-
     }
 }
