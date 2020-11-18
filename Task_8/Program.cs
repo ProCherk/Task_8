@@ -44,6 +44,7 @@ namespace Task_8
 
             MyComplex F = new MyComplex("F");
             F = -E;
+            Console.WriteLine("F = -E");
             Console.WriteLine(F);
         }
     }
@@ -87,7 +88,7 @@ namespace Task_8
         }
         public static MyComplex operator -(MyComplex a)
         {
-            return new MyComplex { Re = -1 * a.Re, Im = -1 * a.Im };
+            return new MyComplex { Re = -1 * a.Re, Im = -1 * a.Im, Name = "Result" };
         }
         public override string ToString()
         {
