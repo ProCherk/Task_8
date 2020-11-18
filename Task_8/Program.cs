@@ -17,7 +17,7 @@ namespace Task_8
             b = Convert.ToDouble(Console.ReadLine());
 
             MyComplex A = new MyComplex("A", a, b);
-            A.OutputComNumb();
+            Console.WriteLine(A);
 
             Console.Write("Введіть дійсне число " + "\n" + "Реальна частина - ");
             a = Convert.ToDouble(Console.ReadLine());
@@ -25,22 +25,26 @@ namespace Task_8
             b = Convert.ToDouble(Console.ReadLine());
 
             MyComplex B = new MyComplex("B", a, b);
-            B.OutputComNumb();
+            Console.WriteLine(B);
 
             MyComplex C = new MyComplex("C");
             C = A * B;
             Console.WriteLine("C = A * B");
-            C.OutputComNumb();
+            Console.WriteLine(C);
 
             MyComplex D = new MyComplex("D");
             D = C * 15;
             Console.WriteLine("D = C * 15");
-            D.OutputComNumb();
+            Console.WriteLine(D);
 
             MyComplex E = new MyComplex("E");
             E = 13 * D;
             Console.WriteLine("E = 13 * D");
-            E.OutputComNumb();
+            Console.WriteLine(E);
+
+            MyComplex F = new MyComplex("F");
+            F = -E;
+            Console.WriteLine(F);
         }
     }
 
@@ -69,12 +73,6 @@ namespace Task_8
 
         public MyComplex(string n = " ", double a = 0, double b = 0) { name = n; re = a; im = b; }
 
-        public void OutputComNumb()
-        {
-            Console.WriteLine($"{name} = {re}+{im}*i");
-            Console.WriteLine();
-        }
-        
         public static MyComplex operator *(MyComplex a, MyComplex b)
         {
             return new MyComplex { re = a.re * b.re, im = a.im * b.im, name = "Result"};
@@ -86,6 +84,17 @@ namespace Task_8
         public static MyComplex operator *(double b, MyComplex a)
         {
             return new MyComplex { re = a.re * b, im = a.im * b, name = "Result" };
+        }
+        public static MyComplex operator -(MyComplex a)
+        {
+            return new MyComplex { Re = -1 * a.Re, Im = -1 * a.Im };
+        }
+        public override string ToString()
+        {
+            if (Im < 0)
+                return Name + "=" + Re + Im + "*i";
+            else
+                return Name + "=" + Re + "+" + Im + "*i";
         }
     }
 }
