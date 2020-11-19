@@ -9,27 +9,19 @@ namespace Task_8
             Console.InputEncoding = System.Text.Encoding.Unicode;
             Console.OutputEncoding = System.Text.Encoding.Unicode;
 
-            double a, b;
-            
-            Console.Write("Введіть дійсне число " + "\n" + "Реальна частина - ");
-            a = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Уявна частина - ");
-            b = Convert.ToDouble(Console.ReadLine());
-
-            MyComplex A = new MyComplex("A", a, b);
+            MyComplex A = new MyComplex();
+            A.InputComplexNumber(A);
             Console.WriteLine(A);
+            Console.WriteLine();
 
-            Console.Write("Введіть дійсне число " + "\n" + "Реальна частина - ");
-            a = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Уявна частина - ");
-            b = Convert.ToDouble(Console.ReadLine());
-
-            MyComplex B = new MyComplex("B", a, b);
+            MyComplex B = new MyComplex();
+            B.InputComplexNumber(B);
             Console.WriteLine(B);
+            Console.WriteLine();
 
             MyComplex C = new MyComplex("C");
             C = A * B;
-            Console.WriteLine("C = A * B");
+            Console.WriteLine($"C = {A.Name} * {B.Name}");
             Console.WriteLine(C);
 
             MyComplex D = new MyComplex("D");
@@ -73,6 +65,61 @@ namespace Task_8
         }
 
         public MyComplex(string n = " ", double a = 0, double b = 0) { name = n; re = a; im = b; }
+
+        private string InputName()
+        {
+            Console.Write("Введіть назву змінної:");
+            name = Console.ReadLine();
+
+            return name;
+        }
+        private double InputRe()
+        {
+            bool flag = false;
+            do
+            {
+                Console.Write("Введіть реальну частину: ");
+                string a = Console.ReadLine();
+                flag = double.TryParse(a, out re);
+                if (flag)
+                    break;
+                else
+                {
+                    Console.WriteLine("Невірно введені данні!!!!");
+                    flag = true;
+                }
+
+            } while (flag);
+
+            return re;
+        }
+        private double InputIm()
+        {
+            bool flag = false;
+            do
+            {
+                Console.Write("Уявна частина - ");
+                string a = Console.ReadLine();
+                flag = double.TryParse(a, out im);
+                if (flag)
+                    break;
+                else
+                {
+                    Console.WriteLine("Невірно введені данні!!!!");
+                    flag = true;
+                }
+
+            } while (flag);
+
+            return im;
+        }
+        public void InputComplexNumber(MyComplex a)
+        {
+            a.InputName();
+            a.InputRe();
+            a.InputIm();
+            Console.WriteLine();
+        }
 
         public static MyComplex operator *(MyComplex a, MyComplex b)
         {
